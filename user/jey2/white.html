@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>White</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #fafafa;
+        color: #222;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero {
+        text-align: center;
+        padding: 60px 24px;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        letter-spacing: -1px;
+        margin-bottom: 16px;
+        background: linear-gradient(to right, #333, #aaa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: rgba(0, 0, 0, 0.45);
+        max-width: 480px;
+        line-height: 1.7;
+        margin-bottom: 40px;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 0 24px;
+        max-width: 900px;
+        width: 100%;
+      }
+
+      .card {
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        border-radius: 16px;
+        padding: 32px 24px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        transition: all 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+      }
+
+      .card .icon {
+        font-size: 2rem;
+        margin-bottom: 16px;
+        color: #aaa;
+      }
+
+      .card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+      }
+
+      .card p {
+        font-size: 0.9rem;
+        color: rgba(0, 0, 0, 0.4);
+        line-height: 1.5;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 14px 40px;
+        background: #222;
+        color: #fff;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s;
+      }
+
+      .btn:hover {
+        background: #444;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        transform: scale(1.05);
+      }
+
+      @media (max-width: 640px) {
+        .cards {
+          grid-template-columns: 1fr;
+        }
+
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <h1>White Theme</h1>
+      <p>
+        밝고 깨끗한 공간에서 느끼는 편안함. 심플하고 우아한 라이트 테마입니다.
+      </p>
+      <a href="#" class="btn">탐색하기</a>
+    </section>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">&#9675;</div>
+        <h3>깔끔함</h3>
+        <p>밝은 톤의 정돈된 레이아웃</p>
+      </div>
+      <div class="card">
+        <div class="icon">&#9671;</div>
+        <h3>우아함</h3>
+        <p>화이트 기반의 부드러운 분위기</p>
+      </div>
+      <div class="card">
+        <div class="icon">&#9734;</div>
+        <h3>편안함</h3>
+        <p>눈이 편한 밝고 가벼운 디자인</p>
+      </div>
+    </div>
+  </body>
+</html>

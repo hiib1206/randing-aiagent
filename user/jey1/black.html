@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Black</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #0a0a0a;
+        color: #f0f0f0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero {
+        text-align: center;
+        padding: 60px 24px;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        letter-spacing: -1px;
+        margin-bottom: 16px;
+        background: linear-gradient(to right, #fff, #888);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.5);
+        max-width: 480px;
+        line-height: 1.7;
+        margin-bottom: 40px;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 0 24px;
+        max-width: 900px;
+        width: 100%;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        padding: 32px 24px;
+        text-align: center;
+        transition: all 0.3s;
+      }
+
+      .card:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-4px);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .card .icon {
+        font-size: 2rem;
+        margin-bottom: 16px;
+      }
+
+      .card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+      }
+
+      .card p {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.4);
+        line-height: 1.5;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 14px 40px;
+        background: #fff;
+        color: #0a0a0a;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s;
+      }
+
+      .btn:hover {
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
+      }
+
+      @media (max-width: 640px) {
+        .cards {
+          grid-template-columns: 1fr;
+        }
+
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <h1>Black Theme</h1>
+      <p>어둠 속에서 빛나는 미니멀한 디자인. 깔끔하고 세련된 다크 테마입니다.</p>
+      <a href="#" class="btn">탐색하기</a>
+    </section>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">&#9679;</div>
+        <h3>미니멀</h3>
+        <p>불필요한 요소를 제거한 깔끔한 디자인</p>
+      </div>
+      <div class="card">
+        <div class="icon">&#9670;</div>
+        <h3>세련됨</h3>
+        <p>다크 톤의 고급스러운 분위기</p>
+      </div>
+      <div class="card">
+        <div class="icon">&#9733;</div>
+        <h3>집중</h3>
+        <p>콘텐츠에 시선을 집중시키는 레이아웃</p>
+      </div>
+    </div>
+  </body>
+</html>
