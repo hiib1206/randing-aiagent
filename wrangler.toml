@@ -1,0 +1,5 @@
+name = "randing-aiagent"
+compatibility_date = "2026-03-20"
+
+[assets]
+directory = "./deploy"
