@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test3 Page</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 48px;
+        max-width: 500px;
+        width: 90%;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        text-align: center;
+      }
+
+      .card h1 {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 16px;
+      }
+
+      .card p {
+        font-size: 1.1rem;
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 32px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 32px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        font-size: 1rem;
+        cursor: pointer;
+        text-decoration: none;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>테스트3 페이지</h1>
+      <p>깔끔하고 예쁜 테스트 페이지입니다.</p>
+      <a href="#" class="btn">시작하기</a>
+    </div>
+  </body>
+</html>
