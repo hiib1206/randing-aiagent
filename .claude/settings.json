@@ -5,7 +5,13 @@
       "Bash(git pull:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(TZ=*)",
+      "Bash(date *)",
+      "Bash(cp *)",
+      "Bash(mkdir *)",
+      "Bash(echo *)",
+      "Bash(cat *)"
     ]
   }
 }
