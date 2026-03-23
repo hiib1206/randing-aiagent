@@ -1,17 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(curl *)",
-      "Bash(git pull:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(git push:*)",
-      "Bash(TZ=*)",
-      "Bash(date *)",
-      "Bash(cp *)",
-      "Bash(mkdir *)",
-      "Bash(echo *)",
-      "Bash(cat *)"
+      "Bash(bash .claude/scripts/*)",
+      "Bash(git pull *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
     ]
   }
 }
