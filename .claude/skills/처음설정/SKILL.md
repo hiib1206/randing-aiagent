@@ -1,13 +1,13 @@
 ---
-name: setup
+name: 처음설정
 description: >
   Initial setup for new users on Mac: git install, GitHub config, remote connection, and workspace folder creation.
-  Use when user says "setup", "초기설정", "초기 세팅", "세팅해줘", "initial setup".
+  Use when user says "setup", "처음설정", "처음 설정", "initial setup".
 ---
 
 # Setup
 
-비개발자가 이 프로젝트를 처음 사용할 때 필요한 초기 세팅을 자동으로 진행한다.
+비개발자가 이 프로젝트를 처음 사용할 때 필요한 처음 설정을 자동으로 진행한다.
 
 ## 사용자는 비개발자다
 
@@ -108,16 +108,16 @@ GitHub 로그인 화면이 떴을 거예요.
 모든 단계가 끝나면 아래 형식으로 결과를 보고한다:
 
 ```
-초기 세팅 완료! ✅
+처음 설정 완료! ✅
 
 📌 계정: {닉네임} ({이메일})
 📁 작업 폴더: develop/{닉네임}
 
 이제 아래 명령어를 사용할 수 있어요:
 
-• /deploy — 만든 페이지를 사이트에 올리기
-• /archive — 사이트에서 페이지 내리기
-• /guide — 규칙 및 사용법 보기
+• /배포 — 만든 페이지를 사이트에 올리기
+• /보관 — 사이트에서 페이지 내리기
+• /가이드 — 규칙 및 사용법 보기
 ```
 
 ## Example
@@ -125,7 +125,7 @@ GitHub 로그인 화면이 떴을 거예요.
 **Input:**
 
 ```
-/setup
+/처음설정
 ```
 
 **Step 1 결과 (git 있음):**
@@ -148,14 +148,14 @@ GitHub 계정 정보를 설정할게요.
 **최종 결과:**
 
 ```
-초기 세팅 완료! ✅
+처음 설정 완료! ✅
 
 📌 계정: jeycorp1216 (jeycorp1216@gmail.com)
 📁 작업 폴더: develop/jeycorp1216
 
 이제 아래 명령어를 사용할 수 있어요:
 
-• /deploy — 만든 페이지를 사이트에 올리기
-• /archive — 사이트에서 페이지 내리기
-• /guide — 규칙 및 사용법 보기
+• /배포 — 만든 페이지를 사이트에 올리기
+• /보관 — 사이트에서 페이지 내리기
+• /가이드 — 규칙 및 사용법 보기
 ```
