@@ -26,13 +26,13 @@ elapsed=0
 
 while [ $elapsed -lt $MAX_WAIT ]; do
   if [ "$CHECK" = "404" ]; then
-    status=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+    status=$(curl -s -L -o /dev/null -w "%{http_code}" "$URL")
     if [ "$status" = "404" ]; then
       echo "SUCCESS"
       exit 0
     fi
   else
-    body=$(curl -s "$URL")
+    body=$(curl -s -L "$URL")
     if echo "$body" | grep -q "$CHECK"; then
       echo "SUCCESS"
       exit 0
@@ -48,13 +48,13 @@ echo "RETRY"
 sleep $RETRY_WAIT
 
 if [ "$CHECK" = "404" ]; then
-  status=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+  status=$(curl -s -L -o /dev/null -w "%{http_code}" "$URL")
   if [ "$status" = "404" ]; then
     echo "SUCCESS"
     exit 0
   fi
 else
-  body=$(curl -s "$URL")
+  body=$(curl -s -L "$URL")
   if echo "$body" | grep -q "$CHECK"; then
     echo "SUCCESS"
     exit 0
