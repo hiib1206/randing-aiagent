@@ -2,7 +2,7 @@
 name: setup
 description: >
   Initial setup for new users on Mac: git install, GitHub config, remote connection, and workspace folder creation.
-  Use when user says "setup", "초기설정", "초기 세팅", "처음", "시작", "세팅해줘", "설정", "initial setup".
+  Use when user says "setup", "초기설정", "초기 세팅", "세팅해줘", "initial setup".
 ---
 
 # Setup
@@ -86,9 +86,18 @@ GitHub 로그인 화면이 떴을 거예요.
 개발팀에 문의해주세요.
 ```
 
-### Step 5 — 작업 폴더 생성
+### Step 5 — 프로젝트 폴더 확인 및 생성
 
-Step 2에서 설정한 GitHub 닉네임을 그대로 폴더 이름으로 사용한다. 사용자에게 따로 묻지 마라.
+아래 필수 폴더들이 없으면 자동으로 생성한다:
+
+1. `develop/` — 작업 공간
+2. `deploy/` — 배포 공간
+3. `archive/` — 보관 공간
+4. `guideline/` — 가이드라인 모음
+
+각 폴더가 이미 있으면 건너뛴다. 없는 폴더만 생성한다.
+
+그 다음, Step 2에서 설정한 GitHub 닉네임을 그대로 폴더 이름으로 사용하여 개인 작업 폴더를 만든다. 사용자에게 따로 묻지 마라.
 
 1. `develop/{GitHub 닉네임}` 경로에 폴더가 이미 있는지 확인한다.
    - **이미 있으면** → "이미 폴더가 있어요! 그대로 사용하면 돼요 ✅"라고 안내하고 다음 단계로 진행.
