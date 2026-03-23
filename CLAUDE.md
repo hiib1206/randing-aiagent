@@ -1,0 +1,37 @@
+# 프로젝트 개요
+
+비개발자가 Claude Code로 HTML 랜딩 페이지를 만들고, 배포/관리하는 프로젝트.
+Cloudflare Workers에 GitHub 연동되어 있으며, main push 시 자동 빌드/배포된다.
+
+- 배포 URL: `https://test.tunoinvest.com/v{번호}`
+- 배포 대상: `deploy/` 폴더 안의 HTML 파일 (v1.html, v2.html... 자동 번호 부여)
+
+# 폴더 구조
+
+```
+develop/   ← 작업 공간 (각자 본인 폴더에서 HTML 작업)
+deploy/    ← 배포 공간 (스킬이 관리, 직접 수정 금지)
+archive/   ← 보관 공간 (배포에서 내린 파일 보관, 직접 수정 금지)
+```
+
+# 핵심 규칙
+
+- 사용자는 **비개발자**다. git, 커밋, 푸시 같은 기술 용어를 쓰지 마라.
+- 각자 `develop/` 안의 **본인 폴더에서만** 작업한다. 다른 사람 폴더를 수정하지 마라.
+- **같은 파일을 여러 사람이 동시에 수정하면 안 된다.** 충돌 시 개발팀에 문의하도록 안내하라.
+- `deploy/`, `archive/`는 직접 수정하지 마라. `/deploy`, `/archive` 스킬을 사용하라.
+- 배포 가능한 파일은 `.html`만이다.
+
+# 스킬
+
+- `/setup` — 초기 세팅 (Git 설치, 계정 설정, 작업 폴더 생성)
+- `/deploy` — develop/의 HTML을 deploy/로 복사하고 사이트에 배포
+- `/archive` — deploy/의 HTML을 사이트에서 내리고 archive/로 보관
+- `/restore` — archive/의 HTML을 원래 v번호로 다시 deploy/에 복원
+- `/guide` — 프로젝트 규칙 안내
+
+# Git
+
+- 브랜치는 main만 사용한다.
+- push 전에 반드시 `git pull origin main`을 먼저 실행하라.
+- 충돌 발생 시 사용자에게 "개발팀에 문의해주세요"라고 안내하고 중단하라.
