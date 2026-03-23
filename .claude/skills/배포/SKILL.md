@@ -1,5 +1,5 @@
 ---
-name: deploy
+name: 배포
 description: >
   Copies HTML files from develop/ to deploy/ and publishes automatically.
   Use when user says "deploy", "배포", "배포해줘", "deploy this", "배포하고 싶어".
