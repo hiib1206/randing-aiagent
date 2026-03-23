@@ -1,109 +1,113 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test Page</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 50px 40px;
-      max-width: 500px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
-      animation: fadeUp 0.8s ease-out;
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Page</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-      to {
-        opacity: 1;
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 50px 40px;
+        max-width: 500px;
+        width: 90%;
+        text-align: center;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+        animation: fadeUp 0.8s ease-out;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .icon {
+        font-size: 60px;
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+        background: linear-gradient(90deg, #a78bfa, #60a5fa);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      p {
+        font-size: 1.05rem;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.7;
+        margin-bottom: 30px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 14px 36px;
+        border: none;
+        border-radius: 50px;
+        background: linear-gradient(135deg, #a78bfa, #60a5fa);
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(167, 139, 250, 0.4);
+      }
+
+      .btn:active {
         transform: translateY(0);
       }
-    }
 
-    .icon {
-      font-size: 60px;
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      background: linear-gradient(90deg, #a78bfa, #60a5fa);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    p {
-      font-size: 1.05rem;
-      color: rgba(255, 255, 255, 0.65);
-      line-height: 1.7;
-      margin-bottom: 30px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 36px;
-      border: none;
-      border-radius: 50px;
-      background: linear-gradient(135deg, #a78bfa, #60a5fa);
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(167, 139, 250, 0.4);
-    }
-
-    .btn:active {
-      transform: translateY(0);
-    }
-
-    .footer {
-      margin-top: 30px;
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.3);
-    }
-  </style>
-</head>
-<body>
-  <div class="card">
-    <div class="icon">&#x1F680;</div>
-    <h1>Hello, World!</h1>
-    <p>깔끔하고 모던한 테스트 페이지입니다.<br>여기에 원하는 내용을 자유롭게 추가해보세요.</p>
-    <a href="#" class="btn">시작하기</a>
-    <div class="footer">Test Page &copy; 2026</div>
-  </div>
-</body>
+      .footer {
+        margin-top: 30px;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="icon">&#x1F680;</div>
+      <h1>Hello, World!</h1>
+      <p>
+        테스트 페이지입니다.<br />여기에 원하는 내용을 자유롭게 추가해보세요.
+      </p>
+      <a href="#" class="btn">시작하기</a>
+      <div class="footer">Test Page &copy; 2026</div>
+    </div>
+  </body>
 </html>

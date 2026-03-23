@@ -2,7 +2,7 @@
 name: update
 description: >
   Updates an existing deployed HTML file with a new version from develop/.
-  Use when user says "update", "업데이트", "v3 업데이트해줘",
+  Use when user says "update", "업데이트", "업데이트해줘", "업뎃",
 ---
 
 # Update
