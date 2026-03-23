@@ -40,28 +40,14 @@ description: >
 
 ### Step 2 — 복원 확인 요청
 
-사용자에게 아래 형식으로 확인을 받아라:
+AskUserQuestion 도구를 사용하여 사용자에게 확인을 받아라.
 
-```
-아래 파일을 다시 사이트에 올릴까요?
+- question: 복원할 파일 목록을 보여주고 확인을 요청한다.
+  - 파일이 1개면: "v3.html (https://test.tunoinvest.com/v3) 다시 사이트에 올릴까요?"
+  - 파일이 여러 개면: "아래 파일을 다시 사이트에 올릴까요?\n1. v3.html (https://test.tunoinvest.com/v3)\n2. v5.html (https://test.tunoinvest.com/v5)"
+- options: "복원하기", "취소"
 
-1. v3.html → https://test.tunoinvest.com/v3
-
-총 1개 파일
-```
-
-여러 파일일 때:
-
-```
-아래 파일을 다시 사이트에 올릴까요?
-
-1. v3.html → https://test.tunoinvest.com/v3
-2. v5.html → https://test.tunoinvest.com/v5
-
-총 2개 파일
-```
-
-사용자가 확인하면 다음 단계로 진행하라.
+사용자가 "복원하기"를 선택하면 다음 단계로 진행하라. "취소"를 선택하면 중단하라.
 
 ### Step 3 — deploy/로 이동
 
@@ -89,18 +75,17 @@ git push origin main
 ### Step 5 — 사이트 반영 확인
 
 push 완료 후 해당 URL에서 페이지가 다시 올라왔는지 확인한다.
+파일이 여러 개면 첫 번째 파일만 확인하면 된다.
 
-1. 해당 파일의 URL에 `curl`로 요청을 보낸다.
-   - 파일이 여러 개면 첫 번째 파일만 확인하면 된다.
-2. **200 응답이 오면** → 성공.
-3. **404 응답이 오면** → 아직 반영 안 됨, 재시도.
-4. **5초 간격으로 최대 90초** 동안 반복한다.
-5. 90초 초과 시 → "아직 반영이 안 됐어요. 30초 후에 다시 확인해볼게요"라고 안내하고, 30초 후 한 번 더 확인한다.
-6. 재확인에서도 실패 시 → "복원에 문제가 생긴 것 같아요. 개발팀에 문의해주세요."라고 안내한다.
+복원할 파일의 `<head>` 안에 있는 기존 `deploy-id` 주석 값을 읽어서 확인값으로 사용한다.
 
 ```bash
-curl -s -o /dev/null -w "%{http_code}" "https://test.tunoinvest.com/v{번호}"
+bash .claude/scripts/check-site.sh "https://test.tunoinvest.com/v{번호}" "deploy-id: {파일에서 읽은 타임스탬프}"
 ```
+
+- `SUCCESS` 출력 → 성공. "사이트에 다시 올라갔어요!"
+- `RETRY` 출력 → "아직 반영이 안 됐어요. 30초 후에 다시 확인해볼게요"라고 안내한다. (스크립트가 자동으로 재시도한다)
+- `FAIL` 출력 → "복원에 문제가 생긴 것 같아요. 개발팀에 문의해주세요."라고 안내한다.
 
 ### Step 6 — 결과 보고
 

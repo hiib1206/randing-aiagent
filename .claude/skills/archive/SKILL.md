@@ -38,36 +38,22 @@ description: >
 - 사용자가 지정한 파일이 `deploy/`에 존재하는지 확인하라.
 - `.html` 파일인지 확인하라.
 
-### Step 2 — archive/로 이동
+### Step 2 — 내리기 확인 요청
+
+AskUserQuestion 도구를 사용하여 실행 전에 사용자에게 확인을 받아라.
+
+- question: 내릴 파일 목록을 보여주고 확인을 요청한다.
+  - 파일이 1개면: "v3.html (https://test.tunoinvest.com/v3) 사이트에서 내릴까요?"
+  - 파일이 여러 개면: "아래 파일을 사이트에서 내릴까요?\n1. v3.html (https://test.tunoinvest.com/v3)\n2. v5.html (https://test.tunoinvest.com/v5)"
+- options: "내리기", "취소"
+
+사용자가 "내리기"를 선택하면 다음 단계로 진행하라. "취소"를 선택하면 중단하라.
+
+### Step 3 — archive/로 이동
 
 - `deploy/`에서 해당 파일을 `archive/`로 그대로 이동하라.
   - 예: `v3.html` → `archive/v3.html`
 - `deploy/`에서는 삭제된다 (이동이므로).
-
-### Step 3 — 내리기 확인 요청
-
-실행 전에 사용자에게 아래 형식으로 확인을 받아라:
-
-```
-아래 파일을 사이트에서 내릴까요?
-
-1. v3.html (https://test.tunoinvest.com/v3)
-
-총 1개 파일
-```
-
-여러 파일일 때:
-
-```
-아래 파일을 사이트에서 내릴까요?
-
-1. v3.html (https://test.tunoinvest.com/v3)
-2. v5.html (https://test.tunoinvest.com/v5)
-
-총 2개 파일
-```
-
-사용자가 확인하면 다음 단계로 진행하라.
 
 ### Step 4 — 배포 실행
 
@@ -89,18 +75,15 @@ git push origin main
 ### Step 5 — 사이트 반영 확인
 
 push 완료 후 해당 URL에서 페이지가 실제로 내려갔는지 확인한다.
-
-1. 해당 파일의 URL에 `curl`로 요청을 보낸다.
-   - 파일이 여러 개면 첫 번째 파일만 확인하면 된다.
-2. **404 응답이 오면** → 성공 (페이지가 내려간 것).
-3. **200 응답이 오면** → 아직 반영 안 됨, 재시도.
-4. **5초 간격으로 최대 90초** 동안 반복한다.
-5. 90초 초과 시 → "아직 반영이 안 됐어요. 30초 후에 다시 확인해볼게요"라고 안내하고, 30초 후 한 번 더 확인한다.
-6. 재확인에서도 실패 시 → "사이트 반영에 문제가 생긴 것 같아요. 개발팀에 문의해주세요."라고 안내한다.
+파일이 여러 개면 첫 번째 파일만 확인하면 된다.
 
 ```bash
-curl -s -o /dev/null -w "%{http_code}" "https://test.tunoinvest.com/v{번호}"
+bash .claude/scripts/check-site.sh "https://test.tunoinvest.com/v{번호}" "404"
 ```
+
+- `SUCCESS` 출력 → 성공. "사이트에서 정상적으로 내려갔어요!"
+- `RETRY` 출력 → "아직 반영이 안 됐어요. 30초 후에 다시 확인해볼게요"라고 안내한다. (스크립트가 자동으로 재시도한다)
+- `FAIL` 출력 → "사이트 반영에 문제가 생긴 것 같아요. 개발팀에 문의해주세요."라고 안내한다.
 
 ### Step 6 — 결과 보고
 

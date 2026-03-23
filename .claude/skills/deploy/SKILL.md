@@ -52,28 +52,14 @@ description: >
 
 ### Step 3 — 배포 확인 요청
 
-사용자에게 아래 형식으로 확인을 받아라:
+AskUserQuestion 도구를 사용하여 사용자에게 확인을 받아라.
 
-```
-아래 파일을 배포할까요?
+- question: 배포할 파일 목록을 보여주고 확인을 요청한다.
+  - 파일이 1개면: "test2.html → v1.html (https://test.tunoinvest.com/v1) 배포할까요?"
+  - 파일이 여러 개면: "아래 파일을 배포할까요?\n1. test2.html → v1.html\n2. test3.html → v2.html"
+- options: "배포하기", "취소"
 
-1. test2.html → v1.html → https://test.tunoinvest.com/v1
-2. test3.html → v2.html → https://test.tunoinvest.com/v2
-
-총 2개 파일
-```
-
-파일이 1개면:
-
-```
-아래 파일을 배포할까요?
-
-1. test2.html → v1.html → https://test.tunoinvest.com/v1
-
-총 1개 파일
-```
-
-사용자가 확인하면 다음 단계로 진행하라.
+사용자가 "배포하기"를 선택하면 다음 단계로 진행하라. "취소"를 선택하면 중단하라.
 
 ### Step 4 — v번호로 HTML 복사 + 타임스탬프 삽입
 
@@ -112,18 +98,15 @@ git push origin main
 ### Step 6 — 배포 반영 확인
 
 push 완료 후 실제 URL에 새 버전이 반영되었는지 확인한다.
-
-1. 배포된 HTML 파일의 URL에 `curl`로 요청을 보낸다.
-   - 파일이 여러 개면 첫 번째 파일만 확인하면 된다.
-2. 응답 본문에 Step 4에서 삽입한 `deploy-id` 타임스탬프가 있는지 확인한다.
-3. **5초 간격으로 최대 90초** 동안 반복한다.
-4. 타임스탬프가 확인되면 → 성공.
-5. 90초 초과 시 → "아직 반영이 안 됐어요. 30초 후에 다시 확인해볼게요"라고 안내하고, 30초 후 한 번 더 확인한다.
-6. 재확인에서도 실패 시 → "배포에 문제가 생긴 것 같아요. 개발팀에 문의해주세요."라고 안내한다.
+파일이 여러 개면 첫 번째 파일만 확인하면 된다.
 
 ```bash
-curl -s "https://test.tunoinvest.com/v{번호}" | grep "deploy-id: {삽입한 타임스탬프}"
+bash .claude/scripts/check-site.sh "https://test.tunoinvest.com/v{번호}" "deploy-id: {삽입한 타임스탬프}"
 ```
+
+- `SUCCESS` 출력 → 성공. "사이트에 정상 반영되었어요!"
+- `RETRY` 출력 → "아직 반영이 안 됐어요. 30초 후에 다시 확인해볼게요"라고 안내한다. (스크립트가 자동으로 재시도한다)
+- `FAIL` 출력 → "배포에 문제가 생긴 것 같아요. 개발팀에 문의해주세요."라고 안내한다.
 
 ### Step 7 — 결과 보고
 

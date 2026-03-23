@@ -2,8 +2,7 @@
 name: update
 description: >
   Updates an existing deployed HTML file with a new version from develop/.
-  Use when user says "update", "업데이트", "수정 반영", "v3 업데이트해줘",
-  "수정한 거 올려줘", "내용 바꿔줘", "변경사항 반영".
+  Use when user says "update", "업데이트", "v3 업데이트해줘",
 ---
 
 # Update
@@ -32,25 +31,26 @@ v번호와 URL은 그대로 유지되고, 내용만 바뀐다.
 
 아래 순서를 **정확히** 따르라. 중간에 실패하면 즉시 중단하고 무엇이 잘못됐는지 쉽게 설명하라.
 
+### Step 0 — 정보 확인
+
+- 소스 파일(develop/ 안의 수정된 파일)을 안 알려줬으면 → "어떤 파일로 업데이트할까요?" 하고 물어보라.
+- 대상 페이지(현재 배포된 페이지)를 안 알려줬으면 → "어떤 페이지를 업데이트할까요?" 하고 물어보라.
+- 둘 다 알려줬으면 바로 Step 1로 진행하라.
+
 ### Step 1 — 대상 확인
 
 - 사용자가 지정한 소스 파일이 `develop/` 하위에 있는지 확인하라.
 - 소스 파일이 `.html`인지 확인하라.
-- 대상 v번호 파일이 `deploy/`에 존재하는지 확인하라.
+- 대상 페이지 파일이 `deploy/`에 존재하는지 확인하라.
 
 ### Step 2 — 업데이트 확인 요청
 
-실행 전에 사용자에게 아래 형식으로 확인을 받아라:
+AskUserQuestion 도구를 사용하여 실행 전에 사용자에게 확인을 받아라.
 
-```
-아래 파일을 업데이트할까요?
+- question: "test2.html → v3.html (https://test.tunoinvest.com/v3) 업데이트할까요? URL은 그대로, 내용만 바뀌어요."
+- options: "업데이트하기", "취소"
 
-test2.html → v3.html (https://test.tunoinvest.com/v3)
-
-URL은 그대로 유지되고, 내용만 바뀌어요.
-```
-
-사용자가 확인하면 다음 단계로 진행하라.
+사용자가 "업데이트하기"를 선택하면 다음 단계로 진행하라. "취소"를 선택하면 중단하라.
 
 ### Step 3 — deploy/ 파일 덮어쓰기 + 타임스탬프 삽입
 
@@ -83,15 +83,8 @@ git push origin main
 
 push 완료 후 실제 URL에 새 버전이 반영되었는지 확인한다.
 
-1. 해당 URL에 `curl`로 요청을 보낸다.
-2. 응답 본문에 Step 3에서 삽입한 `deploy-id` 타임스탬프가 있는지 확인한다.
-3. **5초 간격으로 최대 90초** 동안 반복한다.
-4. 타임스탬프가 확인되면 → 성공.
-5. 90초 초과 시 → "아직 반영이 안 됐어요. 30초 후에 다시 확인해볼게요"라고 안내하고, 30초 후 한 번 더 확인한다.
-6. 재확인에서도 실패 시 → "업데이트 반영에 문제가 생긴 것 같아요. 개발팀에 문의해주세요."라고 안내한다.
-
 ```bash
-curl -s "https://test.tunoinvest.com/v{번호}" | grep "deploy-id: {삽입한 타임스탬프}"
+bash .claude/scripts/check-site.sh "https://test.tunoinvest.com/v{번호}" "deploy-id: {삽입한 타임스탬프}"
 ```
 
 ### Step 6 — 결과 보고
