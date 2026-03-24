@@ -1,5 +1,7 @@
 name = "randing-aiagent"
 compatibility_date = "2026-03-20"
+workers_dev = false
+# wroker.dev 도메인 쓸지말지
 
 [assets]
 directory = "./deploy"
