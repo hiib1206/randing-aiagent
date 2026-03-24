@@ -63,23 +63,30 @@ Cloudflare CDN이 `deploy/` 폴더를 사이트 루트로 서빙한다.
 
 ### Step 3 — 배포 확인 요청
 
-AskUserQuestion 도구를 사용하여 사용자에게 확인을 받아라.
+먼저 채팅 메시지로 배포할 파일 목록을 종류와 함께 보여준다.
 
-- question: 배포할 파일 목록을 종류와 함께 보여주고 확인을 요청한다.
-  - 파일이 1개면: "test2.html (신규) → https://test.tunoinvest.com/test2.html 배포할까요?"
-  - 파일이 여러 개면:
+- 파일이 1개면:
 
-    ```
-    아래 파일을 배포할까요?
+  ```
+  test2.html (신규) → https://test.tunoinvest.com/test2.html
+  ```
 
-    신규
-    - test2.html → https://test.tunoinvest.com/test2.html
-    - pricing.html → https://test.tunoinvest.com/pricing.html
+- 파일이 여러 개면:
 
-    업데이트
-    - about.html → https://test.tunoinvest.com/about.html
-    ```
+  ```
+  아래 파일을 배포할까요?
 
+  신규
+  - test2.html → https://test.tunoinvest.com/test2.html
+  - pricing.html → https://test.tunoinvest.com/pricing.html
+
+  업데이트
+  - about.html → https://test.tunoinvest.com/about.html
+  ```
+
+그 다음 AskUserQuestion 도구로 간단하게 확인을 받는다.
+
+- question: "배포할까요?"
 - options: "배포하기", "취소"
 
 사용자가 "배포하기"를 선택하면 다음 단계로 진행하라. "취소"를 선택하면 중단하라.

@@ -40,19 +40,26 @@ description: >
 
 ### Step 3 — 보관 확인 요청
 
-AskUserQuestion 도구를 사용하여 사용자에게 확인을 받아라.
+먼저 채팅 메시지로 내릴 파일 목록을 보여준다.
 
-- question: 내릴 파일 목록을 보여주고 확인을 요청한다.
-  - 파일이 1개면: "test2.html (https://test.tunoinvest.com/test2.html) 사이트에서 내릴까요?"
-  - 파일이 여러 개면:
+- 파일이 1개면:
 
-    ```
-    아래 파일을 사이트에서 내릴까요?
+  ```
+  test2.html (https://test.tunoinvest.com/test2.html) 사이트에서 내릴까요?
+  ```
 
-    - test2.html (https://test.tunoinvest.com/test2.html)
-    - about.html (https://test.tunoinvest.com/about.html)
-    ```
+- 파일이 여러 개면:
 
+  ```
+  아래 파일을 사이트에서 내릴까요?
+
+  - test2.html (https://test.tunoinvest.com/test2.html)
+  - about.html (https://test.tunoinvest.com/about.html)
+  ```
+
+그 다음 AskUserQuestion 도구로 간단하게 확인을 받는다.
+
+- question: "사이트에서 내릴까요?"
 - options: "내리기", "취소"
 
 사용자가 "내리기"를 선택하면 다음 단계로 진행하라. "취소"를 선택하면 중단하라.
