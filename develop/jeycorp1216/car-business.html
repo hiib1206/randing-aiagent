@@ -1,0 +1,991 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>프리미엄 자동차 | 당신의 드림카를 만나세요</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        color: #1a1a1a;
+        overflow-x: hidden;
+      }
+
+      /* ── 히어로 섹션 ── */
+      .hero {
+        position: relative;
+        height: 100vh;
+        min-height: 700px;
+        background: linear-gradient(
+          135deg,
+          #0a0a0a 0%,
+          #1a1a2e 50%,
+          #16213e 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background:
+          radial-gradient(
+            ellipse at 30% 50%,
+            rgba(192, 57, 43, 0.15) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 70% 50%,
+            rgba(41, 128, 185, 0.1) 0%,
+            transparent 50%
+          );
+        animation: heroGlow 8s ease-in-out infinite alternate;
+      }
+
+      @keyframes heroGlow {
+        0% {
+          transform: translate(0, 0) scale(1);
+        }
+        100% {
+          transform: translate(-2%, 2%) scale(1.05);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 0 20px;
+      }
+
+      .hero-badge {
+        display: inline-block;
+        padding: 8px 24px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 14px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .hero h1 {
+        font-size: clamp(36px, 6vw, 72px);
+        font-weight: 900;
+        color: #fff;
+        line-height: 1.2;
+        margin-bottom: 24px;
+        letter-spacing: -1px;
+      }
+
+      .hero h1 span {
+        background: linear-gradient(135deg, #e74c3c, #f39c12);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero p {
+        font-size: clamp(16px, 2vw, 20px);
+        color: rgba(255, 255, 255, 0.6);
+        max-width: 600px;
+        margin: 0 auto 40px;
+        line-height: 1.7;
+        font-weight: 300;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn-primary {
+        padding: 16px 40px;
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(231, 76, 60, 0.4);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(231, 76, 60, 0.5);
+      }
+
+      .btn-secondary {
+        padding: 16px 40px;
+        background: transparent;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+      }
+
+      .scroll-indicator span {
+        display: block;
+        width: 2px;
+        height: 40px;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.5),
+          transparent
+        );
+        margin: 0 auto;
+        animation: scrollDown 2s ease-in-out infinite;
+      }
+
+      @keyframes scrollDown {
+        0%,
+        100% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(10px);
+        }
+      }
+
+      /* ── 네비게이션 ── */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease;
+      }
+
+      .nav.scrolled {
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(20px);
+        padding: 14px 40px;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .nav-logo {
+        font-size: 22px;
+        font-weight: 900;
+        color: #fff;
+        text-decoration: none;
+        letter-spacing: 2px;
+      }
+
+      .nav-logo span {
+        color: #e74c3c;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: #fff;
+      }
+
+      /* ── 섹션 공통 ── */
+      section {
+        padding: 120px 20px;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .section-label {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 700;
+        color: #e74c3c;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+
+      .section-header h2 {
+        font-size: clamp(28px, 4vw, 48px);
+        font-weight: 900;
+        line-height: 1.3;
+        margin-bottom: 20px;
+      }
+
+      .section-header p {
+        font-size: 17px;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.7;
+      }
+
+      /* ── 차량 라인업 ── */
+      .lineup {
+        background: #f8f9fa;
+      }
+
+      .car-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .car-card {
+        background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      }
+
+      .car-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+      }
+
+      .car-image {
+        height: 240px;
+        background: linear-gradient(135deg, #1a1a2e, #16213e);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .car-image::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          to bottom,
+          transparent 60%,
+          rgba(0, 0, 0, 0.3)
+        );
+      }
+
+      .car-emoji {
+        font-size: 80px;
+        filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+      }
+
+      .car-tag {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        padding: 6px 16px;
+        background: #e74c3c;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        border-radius: 50px;
+        z-index: 1;
+      }
+
+      .car-info {
+        padding: 28px;
+      }
+
+      .car-info h3 {
+        font-size: 22px;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+
+      .car-info .car-desc {
+        font-size: 14px;
+        color: #888;
+        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+
+      .car-specs {
+        display: flex;
+        gap: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #f0f0f0;
+      }
+
+      .spec-item {
+        text-align: center;
+        flex: 1;
+      }
+
+      .spec-value {
+        font-size: 18px;
+        font-weight: 800;
+        color: #e74c3c;
+      }
+
+      .spec-label {
+        font-size: 12px;
+        color: #aaa;
+        margin-top: 4px;
+      }
+
+      /* ── 특장점 ── */
+      .features {
+        background: #fff;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 40px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .feature-item {
+        text-align: center;
+        padding: 40px 24px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .feature-item:hover {
+        background: #f8f9fa;
+      }
+
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 24px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+        background: linear-gradient(135deg, #fff5f5, #ffe8e8);
+      }
+
+      .feature-item h3 {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+
+      .feature-item p {
+        font-size: 15px;
+        color: #777;
+        line-height: 1.7;
+      }
+
+      /* ── 숫자로 보는 실적 ── */
+      .stats {
+        background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
+        color: #fff;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        max-width: 1000px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .stat-item {
+        padding: 20px;
+      }
+
+      .stat-number {
+        font-size: clamp(40px, 5vw, 56px);
+        font-weight: 900;
+        background: linear-gradient(135deg, #e74c3c, #f39c12);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 8px;
+      }
+
+      .stat-label {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 300;
+      }
+
+      /* ── 고객 후기 ── */
+      .reviews {
+        background: #f8f9fa;
+      }
+
+      .review-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .review-card {
+        background: #fff;
+        padding: 36px;
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        position: relative;
+      }
+
+      .review-stars {
+        color: #f39c12;
+        font-size: 18px;
+        margin-bottom: 16px;
+      }
+
+      .review-card p {
+        font-size: 15px;
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 20px;
+      }
+
+      .review-author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .review-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #e74c3c, #f39c12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 18px;
+      }
+
+      .review-name {
+        font-weight: 700;
+        font-size: 15px;
+      }
+
+      .review-detail {
+        font-size: 13px;
+        color: #aaa;
+        margin-top: 2px;
+      }
+
+      /* ── CTA ── */
+      .cta {
+        background: #fff;
+        text-align: center;
+      }
+
+      .cta-box {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 80px 40px;
+        background: linear-gradient(135deg, #1a1a2e, #16213e);
+        border-radius: 30px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-box::before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        right: -100px;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(
+          circle,
+          rgba(231, 76, 60, 0.2),
+          transparent
+        );
+        border-radius: 50%;
+      }
+
+      .cta-box h2 {
+        font-size: clamp(24px, 3.5vw, 36px);
+        color: #fff;
+        font-weight: 900;
+        margin-bottom: 16px;
+        position: relative;
+      }
+
+      .cta-box p {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 16px;
+        margin-bottom: 36px;
+        position: relative;
+      }
+
+      .cta-box .btn-primary {
+        position: relative;
+        font-size: 18px;
+        padding: 18px 48px;
+      }
+
+      .cta-phone {
+        margin-top: 20px;
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 14px;
+        position: relative;
+      }
+
+      .cta-phone strong {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      /* ── 푸터 ── */
+      footer {
+        background: #0a0a0a;
+        color: rgba(255, 255, 255, 0.4);
+        text-align: center;
+        padding: 40px 20px;
+        font-size: 14px;
+      }
+
+      footer a {
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+      }
+
+      /* ── 반응형 ── */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .nav {
+          padding: 16px 20px;
+        }
+
+        section {
+          padding: 80px 16px;
+        }
+
+        .car-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .review-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-box {
+          padding: 60px 24px;
+          border-radius: 20px;
+        }
+      }
+
+      /* ── 스크롤 애니메이션 ── */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+      }
+
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 네비게이션 -->
+    <nav class="nav" id="nav">
+      <a href="#" class="nav-logo">AUTO<span>PRIME</span></a>
+      <ul class="nav-links">
+        <li><a href="#lineup">차량 라인업</a></li>
+        <li><a href="#features">왜 우리인가</a></li>
+        <li><a href="#reviews">고객 후기</a></li>
+        <li><a href="#contact">상담 신청</a></li>
+      </ul>
+    </nav>
+
+    <!-- 히어로 -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">Premium Auto Sales</div>
+        <h1>당신의 <span>드림카</span>를<br />현실로 만듭니다</h1>
+        <p>
+          신차부터 인증 중고차까지, 최고의 컨디션과 합리적인 가격으로
+          만나보세요. 전문 컨설턴트가 1:1로 맞춤 상담해 드립니다.
+        </p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn-primary">무료 상담 신청</a>
+          <a href="#lineup" class="btn-secondary">차량 둘러보기</a>
+        </div>
+      </div>
+      <div class="scroll-indicator"><span></span></div>
+    </section>
+
+    <!-- 차량 라인업 -->
+    <section class="lineup" id="lineup">
+      <div class="section-header fade-up">
+        <div class="section-label">Vehicle Lineup</div>
+        <h2>엄선된 프리미엄 차량</h2>
+        <p>까다로운 검수를 통과한 최상급 차량만을 선보입니다</p>
+      </div>
+      <div class="car-grid">
+        <div class="car-card fade-up">
+          <div class="car-image">
+            <span class="car-tag">BEST</span>
+            <span class="car-emoji">🚗</span>
+          </div>
+          <div class="car-info">
+            <h3>프리미엄 세단</h3>
+            <p class="car-desc">
+              비즈니스와 일상 모두를 아우르는 럭셔리 세단. 최고급 인테리어와
+              첨단 주행 보조 시스템을 갖췄습니다.
+            </p>
+            <div class="car-specs">
+              <div class="spec-item">
+                <div class="spec-value">3.5L</div>
+                <div class="spec-label">배기량</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-value">300hp</div>
+                <div class="spec-label">마력</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-value">8.2km</div>
+                <div class="spec-label">연비</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="car-card fade-up">
+          <div
+            class="car-image"
+            style="background: linear-gradient(135deg, #2c3e50, #34495e)"
+          >
+            <span class="car-tag">NEW</span>
+            <span class="car-emoji">🚙</span>
+          </div>
+          <div class="car-info">
+            <h3>대형 SUV</h3>
+            <p class="car-desc">
+              가족과 함께하는 모든 순간을 위한 대형 SUV. 넉넉한 공간과 강력한
+              주행 성능을 자랑합니다.
+            </p>
+            <div class="car-specs">
+              <div class="spec-item">
+                <div class="spec-value">2.5T</div>
+                <div class="spec-label">배기량</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-value">280hp</div>
+                <div class="spec-label">마력</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-value">9.1km</div>
+                <div class="spec-label">연비</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="car-card fade-up">
+          <div
+            class="car-image"
+            style="background: linear-gradient(135deg, #1a3a1a, #2d5a27)"
+          >
+            <span class="car-tag">ECO</span>
+            <span class="car-emoji">⚡</span>
+          </div>
+          <div class="car-info">
+            <h3>전기차 EV</h3>
+            <p class="car-desc">
+              미래를 앞서가는 전기차. 조용하고 강력한 퍼포먼스로 새로운 드라이빙
+              경험을 선사합니다.
+            </p>
+            <div class="car-specs">
+              <div class="spec-item">
+                <div class="spec-value">77kWh</div>
+                <div class="spec-label">배터리</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-value">320hp</div>
+                <div class="spec-label">마력</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-value">450km</div>
+                <div class="spec-label">주행거리</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 특장점 -->
+    <section class="features" id="features">
+      <div class="section-header fade-up">
+        <div class="section-label">Why Choose Us</div>
+        <h2>왜 오토프라임인가요?</h2>
+        <p>15년간 쌓아온 신뢰와 전문성으로 최적의 차량을 제안합니다</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-item fade-up">
+          <div class="feature-icon">🔍</div>
+          <h3>150포인트 검수</h3>
+          <p>
+            자체 인증 센터에서 150가지 항목을 정밀 검수합니다. 합격한 차량만
+            판매합니다.
+          </p>
+        </div>
+        <div class="feature-item fade-up">
+          <div class="feature-icon">💰</div>
+          <h3>투명한 가격</h3>
+          <p>
+            숨겨진 비용 없이 모든 가격을 투명하게 공개합니다. 합리적인 가격을
+            보장합니다.
+          </p>
+        </div>
+        <div class="feature-item fade-up">
+          <div class="feature-icon">🛡️</div>
+          <h3>1년 무상 보증</h3>
+          <p>
+            구매 후 1년간 엔진, 미션 등 주요 부품을 무상으로 보증해 드립니다.
+          </p>
+        </div>
+        <div class="feature-item fade-up">
+          <div class="feature-icon">🤝</div>
+          <h3>1:1 맞춤 상담</h3>
+          <p>
+            예산, 용도, 선호도에 맞춰 전문 컨설턴트가 최적의 차량을 추천합니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 숫자로 보는 실적 -->
+    <section class="stats">
+      <div class="section-header fade-up">
+        <div class="section-label">Our Track Record</div>
+        <h2 style="color: #fff">숫자로 증명합니다</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-item fade-up">
+          <div class="stat-number" data-target="15">0</div>
+          <div class="stat-label">년 업력</div>
+        </div>
+        <div class="stat-item fade-up">
+          <div class="stat-number" data-target="12000">0</div>
+          <div class="stat-label">누적 판매 대수</div>
+        </div>
+        <div class="stat-item fade-up">
+          <div class="stat-number" data-target="98">0</div>
+          <div class="stat-label">% 고객 만족도</div>
+        </div>
+        <div class="stat-item fade-up">
+          <div class="stat-number" data-target="50">0</div>
+          <div class="stat-label">+ 제휴 브랜드</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 고객 후기 -->
+    <section class="reviews" id="reviews">
+      <div class="section-header fade-up">
+        <div class="section-label">Customer Reviews</div>
+        <h2>고객님들의 생생한 후기</h2>
+        <p>실제 구매 고객님들의 솔직한 이야기를 들어보세요</p>
+      </div>
+      <div class="review-grid">
+        <div class="review-card fade-up">
+          <div class="review-stars">★★★★★</div>
+          <p>
+            "처음 중고차 사는 거라 걱정이 많았는데, 검수 리포트를 하나하나
+            보여주시면서 설명해주셔서 안심하고 구매했습니다. 지금도 너무 잘 타고
+            있어요!"
+          </p>
+          <div class="review-author">
+            <div class="review-avatar">김</div>
+            <div>
+              <div class="review-name">김민수 님</div>
+              <div class="review-detail">프리미엄 세단 구매 · 2024.11</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card fade-up">
+          <div class="review-stars">★★★★★</div>
+          <p>
+            "가격 비교를 많이 해봤는데 여기가 제일 합리적이었어요. 무엇보다 1년
+            보증이 있어서 마음이 편하더라고요. 주변에도 많이 추천하고 있습니다."
+          </p>
+          <div class="review-author">
+            <div class="review-avatar">이</div>
+            <div>
+              <div class="review-name">이지영 님</div>
+              <div class="review-detail">대형 SUV 구매 · 2024.09</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card fade-up">
+          <div class="review-stars">★★★★★</div>
+          <p>
+            "전기차로 바꾸고 싶었는데 어디서 사야 할지 막막했거든요. 상담받고
+            시승까지 해보니 확신이 생겼습니다. 전 과정이 매끄러웠어요!"
+          </p>
+          <div class="review-author">
+            <div class="review-avatar">박</div>
+            <div>
+              <div class="review-name">박준혁 님</div>
+              <div class="review-detail">전기차 EV 구매 · 2025.01</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contact">
+      <div class="cta-box fade-up">
+        <h2>지금 바로 상담받아 보세요</h2>
+        <p>전문 컨설턴트가 예산과 용도에 맞는 최적의 차량을 추천해 드립니다</p>
+        <a href="tel:1588-0000" class="btn-primary">📞 전화 상담하기</a>
+        <div class="cta-phone">
+          영업시간: 평일 09:00 ~ 18:00 · <strong>1588-0000</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+      <p>
+        &copy; 2025 AUTOPRIME. All rights reserved. |
+        <a href="#">개인정보처리방침</a> | <a href="#">이용약관</a>
+      </p>
+    </footer>
+
+    <script>
+      // 네비게이션 스크롤 효과
+      const nav = document.getElementById("nav");
+      window.addEventListener("scroll", () => {
+        nav.classList.toggle("scrolled", window.scrollY > 50);
+      });
+
+      // 스크롤 애니메이션
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document
+        .querySelectorAll(".fade-up")
+        .forEach((el) => observer.observe(el));
+
+      // 숫자 카운트업 애니메이션
+      const countObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              const target = parseInt(el.getAttribute("data-target"));
+              const duration = 2000;
+              const start = performance.now();
+
+              function update(now) {
+                const progress = Math.min((now - start) / duration, 1);
+                const ease = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(ease * target);
+                el.textContent = current.toLocaleString();
+                if (progress < 1) requestAnimationFrame(update);
+              }
+
+              requestAnimationFrame(update);
+              countObserver.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.5 },
+      );
+
+      document
+        .querySelectorAll(".stat-number")
+        .forEach((el) => countObserver.observe(el));
+
+      // 부드러운 스크롤
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
