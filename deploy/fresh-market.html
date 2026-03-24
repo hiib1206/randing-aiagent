@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!-- deploy-id: 2026-03-24T12:26:59+09:00 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>프레시마켓 | 신선식품 새벽배송</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; color: #333; }
+
+    .hero {
+      background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
+      padding: 80px 20px;
+      text-align: center;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: #2e7d32;
+      color: #fff;
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: 42px;
+      font-weight: 800;
+      color: #1b5e20;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 18px;
+      color: #2e7d32;
+      margin-bottom: 30px;
+    }
+    .hero .cta {
+      display: inline-block;
+      background: #43a047;
+      color: #fff;
+      padding: 16px 48px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(67,160,71,0.3);
+    }
+
+    .features {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    .features h2 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 40px;
+      color: #1b5e20;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .feature-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border: 2px solid #e8f5e9;
+    }
+    .feature-card .icon { font-size: 48px; margin-bottom: 16px; }
+    .feature-card h3 { font-size: 20px; margin-bottom: 8px; color: #2e7d32; }
+    .feature-card p { font-size: 15px; color: #666; line-height: 1.6; }
+
+    .categories {
+      background: #f1f8e9;
+      padding: 60px 20px;
+    }
+    .categories h2 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 40px;
+      color: #1b5e20;
+    }
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .cat-item {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px 16px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+    .cat-item:hover { transform: translateY(-3px); }
+    .cat-item .icon { font-size: 36px; margin-bottom: 8px; }
+    .cat-item span { font-size: 14px; font-weight: 600; }
+
+    .promo {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .promo-box {
+      background: linear-gradient(135deg, #43a047, #66bb6a);
+      color: #fff;
+      border-radius: 20px;
+      padding: 40px;
+    }
+    .promo-box h2 { font-size: 26px; margin-bottom: 12px; }
+    .promo-box p { font-size: 16px; margin-bottom: 24px; opacity: 0.9; }
+    .promo-box .cta {
+      display: inline-block;
+      background: #fff;
+      color: #2e7d32;
+      padding: 14px 40px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .footer {
+      background: #1b5e20;
+      color: #fff;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <span class="badge">🌿 신선함을 약속합니다</span>
+    <h1>프레시마켓 새벽배송</h1>
+    <p>밤 11시 주문 → 아침 7시 도착 · 100% 신선 보장</p>
+    <a href="#" class="cta">첫 주문 5,000원 할인</a>
+  </section>
+
+  <section class="features">
+    <h2>프레시마켓이 특별한 이유</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">🌅</div>
+        <h3>새벽배송</h3>
+        <p>밤 11시까지 주문하면<br>다음 날 아침 7시 전 도착</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🥬</div>
+        <h3>산지 직송</h3>
+        <p>전국 농가에서 당일 수확한<br>신선한 식재료만 엄선</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">❄️</div>
+        <h3>냉장 포장</h3>
+        <p>온도 유지 특수 포장으로<br>신선함을 문 앞까지</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="categories">
+    <h2>카테고리</h2>
+    <div class="cat-grid">
+      <div class="cat-item">
+        <div class="icon">🥩</div>
+        <span>정육</span>
+      </div>
+      <div class="cat-item">
+        <div class="icon">🐟</div>
+        <span>수산</span>
+      </div>
+      <div class="cat-item">
+        <div class="icon">🥕</div>
+        <span>채소</span>
+      </div>
+      <div class="cat-item">
+        <div class="icon">🍎</div>
+        <span>과일</span>
+      </div>
+      <div class="cat-item">
+        <div class="icon">🥛</div>
+        <span>유제품</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="promo">
+    <div class="promo-box">
+      <h2>첫 주문 특별 혜택</h2>
+      <p>지금 가입하면 5,000원 할인 쿠폰 + 무료배송 3회 제공</p>
+      <a href="#" class="cta">지금 시작하기</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 FreshMarket. All rights reserved.</p>
+  </footer>
+</body>
+</html>
